@@ -25,7 +25,7 @@
 // now what happen when in core 2 i =i+1 passes , when i loads it passes print i // now that is problem?
 // and it is called race condition
 // one more thing handling these interleaving not in developer side it depends on os means
-// what passes at what time depend on os? so many time it will not give you erreoe but gives wrong output
+// what passes at what time depend on os? so many time it will not give you error but gives wrong output
 // so while making program it is human intelligence what to make concurrant and if you want in some case and problem
 //happens then serailization can be done i.e only print i if i = i+1 finish
 // so in golang we call these threads go routine
@@ -40,11 +40,14 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 )
 
 func main() {
 	go bar()
 	go demo()
+	fmt.Println(runtime.NumGoroutine())
+	fmt.Println(runtime.NumCPU())
 	fmt.Println("hello world")
 }
 func demo() {
